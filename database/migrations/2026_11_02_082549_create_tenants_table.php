@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('api_key_hash');
-            $table->string('webhook_secret');
+            $table->string('api_key_hash')->nullable();
+            $table->string('webhook_secret')->nullable();
             $table->timestamps();
         });
     }

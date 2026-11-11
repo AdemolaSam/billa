@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('subscription_id')->unique();
             $table->string('period_start')->unique();
             $table->string('period_end');
-            $table->enum('status')->default('draft');
+            $table->string('status')->default('draft');
             $table->integer('subtotal');
             $table->integer('total');
             $table->integer('number');
