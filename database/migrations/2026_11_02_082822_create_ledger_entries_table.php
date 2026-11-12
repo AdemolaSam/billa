@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ledger_entries', function (Blueprint $table) {
-            $table->id();
-            $table->string('tenant_id');
-            $table->string('invoice_id');
-            $table->string('payment_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('tenant_id')->constrained();
+            $table->foreignUuid('invoice_id')->constrained();
+            $table->foreignUuid('payment_id')->constrained();
             $table->string('type');
             $table->integer('amount');
             $table->integer('balance_after');

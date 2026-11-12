@@ -21,11 +21,12 @@ class AuthService
                'slug' => Str::slug($data['business_name'])
            ]);
 
-           $user = $tenant->users()->create([
-               'name' => $data['name'],
+           $user = User::create([
+               'name' => $data['user_name'],
                'email' => $data['email'],
                'password' => Hash::make($data['password']),
                'role' => 'owner',
+               'tenant_id' => $tenant['id'],
            ]);
 
            return [
@@ -33,6 +34,8 @@ class AuthService
                'user' => $user->only(['id', 'email', 'name']),
            ];
         });
+
+        return $result;
     }
 
     public function login (array $data): User

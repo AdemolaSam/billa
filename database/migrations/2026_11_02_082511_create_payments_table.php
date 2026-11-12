@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->string('invoice_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('invoice_id')->constrained();
             $table->string('provider_reference');
-            $table->string('status');
+            $table->string('status')->index();
             $table->integer('amount');
             $table->integer('attempt');
             $table->json('raw_response');

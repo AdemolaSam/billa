@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('invoice_lines', function (Blueprint $table) {
-            $table->id();
-            $table->string('invoice_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('invoice_id')->constrained();
             $table->string('type');
             $table->string('description');
             $table->integer('quantity');

@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('webhook_endpoints', function (Blueprint $table) {
-            $table->id();
+        Schema::create('tenants', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('api_key_hash')->nullable();
+            $table->string('webhook_secret')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('webhook_endpoints');
+        Schema::dropIfExists('tenants');
     }
 };

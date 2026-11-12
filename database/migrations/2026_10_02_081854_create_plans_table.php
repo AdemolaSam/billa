@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('plans', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('tenant_id')->constrained();
             $table->string('code');
             $table->string('name');
             $table->string('included_units');
             $table->integer('overage_unit_amount');
-            $table->boolean('active');
+            $table->boolean('active')->index();
             $table->timestamps();
         });
     }

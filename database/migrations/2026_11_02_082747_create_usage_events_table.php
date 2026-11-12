@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usage_events', function (Blueprint $table) {
-            $table->id();
-            $table->string('tenant_id')->unique();
-            $table->string('subscription_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('tenant_id')->constrained();
+            $table->foreignUuid('subscription_id')->constrained();
             $table->integer('quantity');
             $table->string('occured_at');
             $table->string('idempotency_key');

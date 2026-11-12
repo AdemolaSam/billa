@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('webhook_deliveries', function (Blueprint $table) {
-            $table->id();
-            $table->string('endpoint_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('webhook_endpoint_id')->constrained();
             $table->string('event');
             $table->json('payload');
             $table->integer('attempt');

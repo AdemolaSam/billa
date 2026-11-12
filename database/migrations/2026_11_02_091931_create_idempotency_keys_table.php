@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('idempotency_keys', function (Blueprint $table) {
-            $table->id();
-            $table->string('tenant_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('tenant_id')->constrained();
             $table->string('key');
             $table->string('request_hash');
             $table->string('response_code');

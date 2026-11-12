@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('provider_events', function (Blueprint $table) {
-            $table->id();
-            $table->string('provider_event_id')->unique();
+            $table->uuid('id')->primary();
+            $table->uuid('provider_event_id')->unique();
             $table->string('type');
             $table->string('processed_at');
             $table->timestamps();
